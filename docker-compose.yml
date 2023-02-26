@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  urlsdb:
+    image: mongo
+
+  urlshortener.webapplication:
+    image: ${DOCKER_REGISTRY-}urlshortenerwebapplication
+    build:
+      context: .
+      dockerfile: src/UrlShortener.WebApplication/Dockerfile
+
+volumes:
+  mongo_data:

@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  urlsdb:
+    container_name: urlsdb
+    restart: always
+    ports:
+       - "27017:27017"
+    volumes:
+       - mongo_data:/data/db
+
+  urlshortener.webapplication:
+    container_name: urlshortener.webapplication
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - UrlDatabaseSettings:ConnectionString=mongodb://urlsdb:27017
+    depends_on:
+     - urlsdb
+    ports:
+      - "8000:80"
