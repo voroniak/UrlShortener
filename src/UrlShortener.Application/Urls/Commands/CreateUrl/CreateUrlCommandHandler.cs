@@ -20,6 +20,7 @@ namespace UrlShortener.Application.Urls.Commands.CreateUrl
             _urlRepository = urlRepository;
             _shortUrlCreator = shortUrlCreator;
         }
+
         public async Task<string> Handle(CreateUrlCommand request, CancellationToken cancellationToken)
         {
             UrlManagement? url = await _urlRepository.GetByLongUrlAsync(request.Url);

@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using UrlShortener.Application.Urls.Commands.CreateUrl;
 using UrlShortener.Application.Urls.Queries.GetUrl;
@@ -11,12 +10,10 @@ namespace UrlShortener.WebApplication.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IMediator _mediator;
-        private readonly IMapper _mapper;
-        public HomeController(ILogger<HomeController> logger, IMediator mediator, IMapper mapper)
+        public HomeController(ILogger<HomeController> logger, IMediator mediator)
         {
             _mediator = mediator;
             _logger = logger;
-            _mapper = mapper;
         }
 
         public IActionResult Index()
@@ -27,16 +24,19 @@ namespace UrlShortener.WebApplication.Controllers
         [HttpPost]
         public async Task<ActionResult> Index(UrlModel urlModel)
         {
-
+            _logger.LogInformation("Checking if the model state is valid.");
             if (!ModelState.IsValid)
             {
                 return View("Index", urlModel);
             }
+
+            _logger.LogInformation("Creating CreateUrlCommand.");
             CreateUrlCommand createUrlCommand = new CreateUrlCommand
             {
                 Url = urlModel.Url
             };
 
+            _logger.LogInformation("Sending a request to create a short url.");
             var shortUrl = await _mediator.Send(createUrlCommand);
 
             ViewBag.UrlSchemeAndHost = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";

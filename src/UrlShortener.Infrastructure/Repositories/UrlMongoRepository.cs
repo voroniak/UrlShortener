@@ -12,6 +12,7 @@ namespace UrlShortener.Infrastructure.Repositories
         {
             _dbContext = dbContext;
         }
+
         public async Task<UrlManagement> GetByLongUrlAsync(string longUrl)
         {
             return await _dbContext

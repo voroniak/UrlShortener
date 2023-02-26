@@ -12,7 +12,6 @@ namespace UrlShortener.Infrastructure
     {
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
-
             services.AddScoped<IDbContext, MongoDbContext>();
             services.AddScoped<IUrlRepository, UrlMongoRepository>();
             services.AddTransient<IShortUrlCreator, ShortUrlCreator>();
