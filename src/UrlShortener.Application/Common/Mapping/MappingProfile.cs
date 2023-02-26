@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using UrlShortener.Application.Common.Dtos;
 using UrlShortener.Application.Urls.Queries.GetUrl;
 using UrlShortener.Domain.Entities;
 

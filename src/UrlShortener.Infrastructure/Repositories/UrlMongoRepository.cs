@@ -13,6 +13,14 @@ namespace UrlShortener.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
+        public async Task<IEnumerable<UrlManagement>> GetAllUrlsAsync()
+        {
+            return await _dbContext
+                           .UrlManagements
+                           .Find(u => true)
+                           .ToListAsync();
+        }
+
         public async Task<UrlManagement> GetByLongUrlAsync(string longUrl)
         {
             return await _dbContext

@@ -2,7 +2,7 @@
 
 namespace UrlShortener.WebApplication.Models
 {
-    public class UrlModel
+    public class CreateUrlModel
     {
         [Required]
         [MinLength(10)]

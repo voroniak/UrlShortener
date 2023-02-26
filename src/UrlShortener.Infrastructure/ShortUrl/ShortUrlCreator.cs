@@ -16,6 +16,8 @@ namespace UrlShortener.Infrastructure.ShortUrl
         public UrlManagement CreateShortUrl(string url)
         {
             Random random = new Random();
+            IEnumerable<string>? a = Enumerable.Repeat(CHARS, 10);
+            IEnumerable<char>? b = a.Select(str => str[random.Next(CHARS.Length)]);
             string shortUrl = new string
                 (
                 Enumerable.Repeat(CHARS, 10)

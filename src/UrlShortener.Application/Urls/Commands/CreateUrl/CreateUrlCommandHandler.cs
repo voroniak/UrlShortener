@@ -26,7 +26,7 @@ namespace UrlShortener.Application.Urls.Commands.CreateUrl
             UrlManagement? url = await _urlRepository.GetByLongUrlAsync(request.Url);
             if (url != null)
             {
-                _logger.LogInformation($"Short url {url.ShortUrl} for url {url.Url} already exists.");
+                _logger.LogInformation($"Short URL {url.ShortUrl} for URL {url.Url} already exists.");
                 
                 return url.ShortUrl;
             }
@@ -38,13 +38,13 @@ namespace UrlShortener.Application.Urls.Commands.CreateUrl
             {
                 newUrl = _shortUrlCreator.CreateShortUrl(request.Url);
                 urlToChech = await _urlRepository.GetByShortUrlAsync(newUrl.ShortUrl);
-                _logger.LogInformation("Checking for created short url, if it is already used by another url.");
+                _logger.LogInformation("Checking for created short URL, if it is already used by another URL.");
             }
             while (urlToChech != null);
 
             await _urlRepository.InsertAsync(newUrl);
 
-            _logger.LogInformation($"Short url {newUrl.ShortUrl} for url {newUrl.Url} created.");
+            _logger.LogInformation($"Short URL {newUrl.ShortUrl} for URL {newUrl.Url} created.");
 
             return newUrl.ShortUrl;
         }

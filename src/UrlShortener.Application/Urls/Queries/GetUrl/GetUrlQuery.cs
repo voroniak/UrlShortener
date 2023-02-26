@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using UrlShortener.Application.Common.Dtos;
 
 namespace UrlShortener.Application.Urls.Queries.GetUrl
 {

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<GetUrlModel>
+@{
+    ViewData["Title"] = "AllUrls";
+}
+
+<h1>AllUrls</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Url)
+            </th>
+            <th >
+                @Html.DisplayNameFor(model => model.ShortUrl)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var b in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => b.Url)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => b.ShortUrl)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,3 +1,4 @@
+using System.Reflection;
 using UrlShortener.Application;
 using UrlShortener.Infrastructure;
 using UrlShortener.Infrastructure.Settings;
@@ -10,6 +11,7 @@ builder.Services.Configure<UrlDatabaseSettings>(
 builder.Services.AddControllersWithViews();
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

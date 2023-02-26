@@ -7,7 +7,7 @@ namespace UrlShortener.Application.Urls.Commands.CreateUrl
         public CreateUrlCommandValidator()
         {
             RuleFor(p => p.Url)
-                .NotEmpty().WithMessage("Url is required.")
+                .NotEmpty().WithMessage("URL is required.")
                 .NotNull();
         }
     }

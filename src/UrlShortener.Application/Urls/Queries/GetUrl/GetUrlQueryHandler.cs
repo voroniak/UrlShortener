@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using UrlShortener.Application.Common.Dtos;
 using UrlShortener.Application.Common.Interfaces.Repositories;
 using UrlShortener.Domain.Entities;
 
@@ -23,6 +24,8 @@ namespace UrlShortener.Application.Urls.Queries.GetUrl
 
         public async Task<UrlManagmentDto> Handle(GetUrlQuery request, CancellationToken cancellationToken)
         {
+            _logger.LogInformation($"Querying for URL with short URL {request.ShortUrl}.");
+
             UrlManagement? url = await _urlRepository.GetByShortUrlAsync(request.ShortUrl);
             if (url == null)
             {
